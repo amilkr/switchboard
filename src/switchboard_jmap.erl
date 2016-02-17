@@ -65,7 +65,7 @@
          call/2,
          err/1, err/2]).
 
--export([init/3,
+-export([init/2, init/3,
          websocket_init/3,
          websocket_handle/3,
          websocket_info/3,
@@ -243,6 +243,10 @@ err(Type, {Args, ClientID}) ->
 %%==============================================================================
 %% Cowboy Websocket Handler Callbacks
 %%==============================================================================
+
+%% @private
+init(Req, _Opts) ->
+    {cowboy_websocket, Req, #state{}}.
 
 %% @private
 init({tcp, http}, _Req, _Opts) ->
